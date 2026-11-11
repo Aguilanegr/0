@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 export class Semaforo {
 
   color: string = 'gray';
-  mensaje: string = 'Presiona un botón';
+  mensaje: string = 'Presionar un botón';
 
   cambiar(colorNuevo: string, mensajeNuevo: string) {
     this.color = colorNuevo;
