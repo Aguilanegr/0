@@ -1,0 +1,8 @@
+*{
+    padding: 0;
+}
+input{
+    background-color: gold;
+    display: flex;
+    align-items: center;
+}

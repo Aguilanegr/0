@@ -1,0 +1,19 @@
+
+<h1>Registro de estudiantes</h1>
+
+<label>Nombre: <input [(ngModel)]="nombre"></label><br>
+<label>Programa: <input [(ngModel)]="programa"></label><br>
+<label>Edad: <input type="number" [(ngModel)]="edad" min="1"></label><br><br>
+
+<button (click)="registrar()">Registrar</button>
+
+@if (mensaje) { <p>{{ mensaje }}</p> }
+
+<h2>Lista ({{ estudiantes.length }})</h2>
+<ul>
+  @for (e of estudiantes; track $index) {
+    <li>{{ e.nombre }} - {{ e.programa }} - {{ e.edad }} años</li>
+  } @empty {
+    <li>No hay estudiantes registrados.</li>
+  }
+</ul>
