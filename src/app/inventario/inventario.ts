@@ -8,38 +8,47 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './inventario.html',
 })
 export class Inventario {
-   nombre = '';
-  cantidad: number | null = null;
-  precio: number | null = null;
+
+  nombreProducto = '';
+  cantidadProducto: number | null = null;
+  precioProducto: number | null = null;
   mensaje = '';
-  productos: { id: number; nombre: string; cantidad: number; precio: number }[] = [];
-  siguienteId = 1;
+
+  inventario: { nombre: string, cantidad: number, precio: number }[] = [];
 
   agregar() {
-    if (!this.nombre.trim() || this.cantidad === null || this.precio === null) {
-      this.mensaje = 'Completa todos los campos.';
+    if (!this.nombreProducto.trim() || this.cantidadProducto == null || this.precioProducto == null) {
+      this.mensaje = 'completa los 3 datos';
       return;
     }
-    if (this.cantidad < 0 || this.precio < 0) {
-      this.mensaje = 'La cantidad y el precio no pueden ser negativos.';
+
+    if (this.cantidadProducto < 0 || this.precioProducto < 0) {
+      this.mensaje = 'No se puede, ni la cantidad ni el precio pueden ser negativos';
       return;
     }
-    this.productos.push({
-      id: this.siguienteId++,
-      nombre: this.nombre.trim(),
-      cantidad: this.cantidad,
-      precio: this.precio
+
+    this.inventario.push({
+      nombre: this.nombreProducto,
+      cantidad: this.cantidadProducto,
+      precio: this.precioProducto
     });
-    this.nombre = '';
-    this.cantidad = null;
-    this.precio = null;
-    this.mensaje = '';
+
+    this.mensaje = 'Producto agregado!';
+    this.nombreProducto = '';
+    this.cantidadProducto = null;
+    this.precioProducto = null;
   }
 
-  eliminar(id: number) {
-    this.productos = this.productos.filter(p => p.id !== id);
+  eliminar(index: number) {
+    this.inventario.splice(index, 1);
   }
-
+  totalGeneral() {
+    let total = 0;
+    for (let p of this.inventario) {
+      total += p.cantidad * p.precio;
+    }
+    return total;
+  }
 }
 
  
